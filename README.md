@@ -12,7 +12,7 @@ source setup.sh
 ```
 pip install --user ipykernel
 python -m ipykernel install --user --name botied --display-name "Python (botied)"
-
+```
 
 ## Running the experiments
 
