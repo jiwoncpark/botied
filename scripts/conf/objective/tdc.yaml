@@ -1,0 +1,20 @@
+_target_: copulala.objectives.tdc.TDC
+
+botorch_kwargs:
+  root: /scratch/site/u/parj2/caco2
+  path: ${hydra:runtime.cwd}/data/Caco2_Wang_w_props.csv
+  atom_types: ['C', 'N', 'O', 'F', 'S', 'Cl', 'Br', 'I']
+  bond_types: ['AROMATIC', 'SINGLE', 'DOUBLE', 'TRIPLE']
+  targets: ['Y', 'CrippenClogP', 'TPSA', 'QED', 'ExactMolWt', 'FractionCSP3']
+  modes: ['max', 'min', 'max', 'max', 'min', 'max']
+  num_objectives: 5
+  negate: false
+
+kwargs:
+  noise_std: null
+  ref_point: null
+  split_frac:
+    train: 0.1
+    test: 0.1
+
+

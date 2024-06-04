@@ -1,0 +1,21 @@
+# @package _global_
+hydra:
+  sweeper:
+    params:
+      objective: dtlz
+      device_name: cpu
+      ++wandb.project: icml_dtlz_q1 # dtlz_M4_all_baselines
+      objective.botorch_kwargs.num_objectives: 4
+      objective.botorch_kwargs.dim: 6
+      run_kwargs.n_batches: 100
+      run_kwargs.initial_n: 14
+      run_kwargs.seed: 0
+      run_kwargs.batch_size: 1
+      run_kwargs.acq_list: ['botied_copula_cdf', 'botied_copula_cdf_of_means', 'botied_mvn_cdf_of_means', 'botied_empirical_cdf_of_means', 'botied_kde_cdf_of_means', 'random', 'qnehvi', 'qnparego', 'pes', 'jes', 'mes'] # 'botied_mvn_cdf', 'botied_empirical_cdf', 'botied_kde_cdf', 'pes', 'jes', 'mes'
+      # acquisitions.botied_copula_cdf.num_posterior_samples: 128
+      # acquisitions.botied_copula_cdf.maxiter: 32
+      # acquisitions.botied_copula_cdf.popsize: 128
+      +acquisitions.botied_copula_cdf.sigma0: 1.0
+      # acquisitions.botied_copula_cdf.cdf_model.init_kwargs.nonparametric_mult: 1.0
+      # acquisitions.botied_copula_cdf.cdf_model.eval_kwargs.N: 1000
+      # acquisitions.botied_copula_cdf.cdf_model.init_kwargs.family_set_names: ['gaussian']

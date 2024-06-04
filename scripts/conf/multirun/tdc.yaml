@@ -1,0 +1,14 @@
+# @package _global_
+hydra:
+  sweeper:
+    params:
+      objective: tdc
+      ++wandb.project: tdc
+      model_wrapper: exact_gp_gauche
+      run_kwargs.n_batches: 2
+      run_kwargs.seed: 1
+      run_kwargs.acq_list: ['random', 'qnehvi', 'qnparego']
+      device_name: cuda
+      run_kwargs.batch_size: 5
+      run_kwargs.model.n_pred_samples: 20
+      run_kwargs.select_factor: 10

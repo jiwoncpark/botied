@@ -1,0 +1,8 @@
+_target_: copulala.objectives.penicillin.Penicillin
+
+botorch_kwargs:
+  negate: True
+
+kwargs:
+  noise_std: [0.1411, 0.7889, 3.9600]
+  ref_point: null

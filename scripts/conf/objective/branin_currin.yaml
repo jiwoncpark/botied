@@ -1,0 +1,10 @@
+_target_: copulala.objectives.branin_currin.BraninCurrin
+
+botorch_kwargs:
+  negate: True
+
+kwargs:
+  noise_std: [15.19, 0.63]  # 5% and [3.5650, 0.1536] 1%
+  ref_point: null
+
+

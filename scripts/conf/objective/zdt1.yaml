@@ -1,0 +1,12 @@
+_target_: copulala.objectives.zdt1.ZDT1
+
+botorch_kwargs:
+  dim: 4
+  num_objectives: 2
+  negate: True
+
+kwargs:
+  noise_std: [0.0100, 0.0763]  # 1% and [0.0500, 0.4125] 5%
+  ref_point: null
+
+

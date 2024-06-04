@@ -1,0 +1,25 @@
+_target_: copulala.objectives.caco2_plus.Caco2Plus
+
+botorch_kwargs: {}
+# botorch_kwargs:
+#   root: null
+# root: /scratch/site/u/parj2/caco2
+# path: ${hydra:runtime.cwd}/data/Caco2_Wang_w_props.csv
+# atom_types: ['C', 'N', 'O', 'F', 'S', 'Cl', 'Br', 'I']
+# bond_types: ['AROMATIC', 'SINGLE', 'DOUBLE', 'TRIPLE']
+
+kwargs:
+  targets: ['Y', 'CrippenClogP', 'TPSA']  # , 'QED', 'ExactMolWt', 'FractionCSP3']
+  modes: ['max', 'min', 'max']  # , 'max', 'min', 'max']
+  path: ${hydra:runtime.cwd}/data/Caco2_Wang_w_props.csv
+  # initial_n: 20
+  ref_point: [-8.0, -9.0, 3.0, 0.0, -1000.0, -1.0]  # for maximization
+  split_frac:
+    train: 0.1
+    test: 0.1
+  featurizing_kwargs:
+    representation: ecfp_fragprints
+  # num_objectives: 5
+  negate: false
+
+

@@ -1,0 +1,16 @@
+# @package _global_
+hydra:
+  sweeper:
+    params:
+      objective: copula_bc
+      objective.kwargs.split_frac.train: 0.1
+      objective.kwargs.split_frac.test: 0.1
+      ++wandb.project: copula_bc_results_rerun
+      model_wrapper: exact_gp
+      run_kwargs.n_batches: 20
+      run_kwargs.seed: 0, 1, 2, 3, 4
+      run_kwargs.acq_list: ['random', 'qnparego', 'copula_cdf_score', 'qnehvi', 'copula_mean_cdf_score']
+      device_name: cuda
+      run_kwargs.batch_size: 20
+      run_kwargs.model.n_pred_samples: 20
+      run_kwargs.select_factor: 10

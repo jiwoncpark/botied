@@ -1,0 +1,20 @@
+# @package _global_
+hydra:
+  sweeper:
+    params:
+      objective: caco2_plus
+      objective.kwargs.targets: ['Y', 'CrippenClogP', 'TPSA']  # , 'QED', 'ExactMolWt', 'FractionCSP3']
+      objective.kwargs.modes: ['max', 'min', 'max']  # 'max', 'min', 'max']
+      objective.kwargs.ref_point: [-8.0, -9.0, 3.0]  # , 0.0, -1000.0, -1.0]  # should be for maximization
+      objective.kwargs.featurizing_kwargs.representation: ecfp_fragprints
+      objective.kwargs.split_frac.train: 0.3
+      objective.kwargs.split_frac.test: 0.05
+      ++wandb.project: icml_caco2_plus_q1
+      model_wrapper: exact_gp
+      model_wrapper.kernel: tanimoto
+      run_kwargs.n_batches: 20
+      run_kwargs.seed: 0
+      device_name: cuda
+      run_kwargs.batch_size: 4
+      run_kwargs.select_factor: 20
+      run_kwargs.acq_list: ['botied_copula_cdf', 'botied_mvn_cdf', 'botied_empirical_cdf', 'botied_kde_cdf', 'botied_copula_cdf_of_means', 'botied_mvn_cdf_of_means', 'botied_empirical_cdf_of_means', 'botied_kde_cdf_of_means', 'random', 'qnehvi', 'qnparego', 'pes', 'jes', 'mes']

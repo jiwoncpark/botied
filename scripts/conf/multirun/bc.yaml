@@ -1,0 +1,19 @@
+# @package _global_
+hydra:
+  sweeper:
+    params:
+      objective: branin_currin
+      device_name: cpu
+      ++wandb.project: icml_bc_q1
+      run_kwargs.initial_n: 6
+      run_kwargs.n_batches: 80  # ~2h for 100
+      run_kwargs.seed: 0
+      run_kwargs.acq_list: ['botied_copula_cdf', 'botied_copula_cdf_of_means', 'botied_mvn_cdf_of_means', 'botied_empirical_cdf_of_means', 'botied_kde_cdf_of_means', 'random', 'qnehvi', 'qnparego', 'pes', 'jes', 'mes']
+      # ['botied_copula_inverse_cdf', 'botied_copula_inverse_cdf_of_means', 'botied_copula_cdf', 'botied_copula_cdf_of_means']
+      # ['botied_copula_cdf', 'botied_mvn_cdf', 'botied_copula_inverse_cdf', 'botied_copula_inverse_cdf_of_means', 'botied_empirical_cdf', 'botied_kde_cdf', 'botied_copula_cdf_of_means', 'botied_mvn_cdf_of_means', 'botied_empirical_cdf_of_means', 'botied_kde_cdf_of_means', 'random', 'qnehvi', 'qnparego']
+      run_kwargs.batch_size: 1  # 1, 2, 4
+      ++acquisitions.botied_copula_cdf.cdf_model.init_kwargs.nonparametric_mult: 1.0
+      # ++acquisitions.botied_copula_cdf.cdf_model.eval_kwargs.N: 1000
+      # ++acquisitions.botied_copula_cdf.cdf_model.init_kwargs.family_set_names: ['joe']
+      # run_kwargs.show_scatterplot: true
+      # ++acquisitions.botied_copula_cdf.apply_ref_point: true

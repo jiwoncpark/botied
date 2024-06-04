@@ -1,0 +1,87 @@
+defaults:
+  - _self_
+  - wandb: prescient
+  - objective: dtlz
+  - model_wrapper: exact_gp
+
+device_name: cpu
+
+acquisitions:
+  botied_copula_cdf:
+    cdf_model:
+      _target_: copulala.cdf._cdf_model.CDFModel
+      type: copula
+      init_kwargs:
+        family_set_names: ['tll']
+        nonparametric_mult: 1.0
+      eval_kwargs:
+        N : 2000
+        num_threads: 4
+    apply_ref_point: false
+  botied_copula_inverse_cdf:
+    cdf_model:
+      _target_: copulala.cdf._cdf_model.CDFModel
+      type: copula_inverse
+      init_kwargs:
+        family_set_names: ['tll']
+        nonparametric_mult: 1.0
+      eval_kwargs:
+        N : 1000
+        num_threads: 4
+    apply_ref_point: false
+  botied_mvn_cdf:
+    cdf_model:
+      _target_: copulala.cdf._cdf_model.CDFModel
+      type: mvn
+    apply_ref_point: false
+  botied_empirical_cdf:
+    cdf_model:
+      _target_: copulala.cdf._cdf_model.CDFModel
+      type: empirical
+    apply_ref_point: false
+  botied_kde_cdf:
+    cdf_model:
+      _target_: copulala.cdf._cdf_model.CDFModel
+      type: kde
+    apply_ref_point: false
+  qnehvi: {}
+  qnparego: {}
+  pes: {}
+  mes:
+    estimation_type: LB
+    num_pareto_samples: 10
+    num_pareto_points: 10
+    pop_size: 2000
+    max_tries: 20
+  jes:
+    estimation_type: LB
+    num_pareto_samples: 10
+    num_pareto_points: 10
+    pop_size: 2000
+    max_tries: 20
+  random: {}
+
+cdf_indicator:
+  _target_: copulala.metrics.cdf_indicator.CDFIndicator
+  _recursive_: true
+  cdf_model:
+    _target_: copulala.cdf._cdf_model.CDFModel
+    ties_method: average
+    init_kwargs:
+      family_set_names: ['tll']
+      nonparametric_mult: 1.0
+    eval_kwargs:
+      N : 1000
+      num_threads: 4
+
+run_kwargs:
+  show_scatterplot: false
+  seed: 123
+  initial_n: null
+  batch_size: 4
+  select_factor: 20
+  acq_list: ['botied_copula_cdf', 'botied_mvn_cdf', 'botied_empirical_cdf', 'botied_kde_cdf', 'botied_copula_cdf_of_means', 'botied_mvn_cdf_of_means', 'botied_empirical_cdf_of_means', 'botied_kde_cdf_of_means', 'pes', 'mes', 'jes', 'random', 'qnehvi', 'qnparego']
+  n_batches: 5
+  model:
+    n_training_iters: 300
+    n_pred_samples: 128

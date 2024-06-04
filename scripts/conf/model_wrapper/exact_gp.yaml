@@ -1,0 +1,4 @@
+_target_: copulala.models.exact_gp.ExactGP
+
+kernel: null
+

@@ -1,0 +1,24 @@
+_target_: copulala.objectives.copula_branin_currin.CopulaBraninCurrin
+
+botorch_kwargs:
+  root: null
+  inverse_kwargs:
+    negate: False
+# root: /scratch/site/u/parj2/caco2
+# path: ${hydra:runtime.cwd}/data/Caco2_Wang_w_props.csv
+# atom_types: ['C', 'N', 'O', 'F', 'S', 'Cl', 'Br', 'I']
+# bond_types: ['AROMATIC', 'SINGLE', 'DOUBLE', 'TRIPLE']
+
+kwargs:
+  # initial_n: 20
+  targets: [0, 1]  # FIXME: dummy names
+  rotation: 90
+  num_samples: 10000
+  ref_point: [-0.1, -0.1]  # for maximization
+  split_frac:
+    train: 0.1
+    test: 0.1
+  # num_objectives: 5
+  negate: false
+
+

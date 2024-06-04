@@ -1,0 +1,11 @@
+_target_: copulala.objectives.dtlz.DTLZ
+
+botorch_kwargs:
+  dim: 6
+  num_objectives: 4
+  negate: False
+  noise_std: [0.0162, 0.0157, 0.0166, 0.0170]  # [0.0833, 0.0795, 0.0834, 0.0858]
+
+kwargs:
+  ref_point: [-0.1, -0.1, -0.1, -0.1]
+
